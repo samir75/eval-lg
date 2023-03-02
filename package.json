@@ -1,0 +1,7 @@
+{
+  "name": "eval-lg",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "license": "UNLICENSED",
+  "private": true
+}
