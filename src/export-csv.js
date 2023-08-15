@@ -48,6 +48,7 @@ const getCurrentDate = function(){
 }
 
 
+
 //main 
 const main =  function() {
   const args = process.argv.slice(2);

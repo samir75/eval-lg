@@ -17,10 +17,14 @@ class JsonToCsv {
       */
     this.BOM = '\uFEFF'; 
     /**
-     * 
+     * Problème des colonnes non séparée sur les système non français 
      */
     this.delimiter = (new Intl.NumberFormat().format(1111) === "1,111") ? "," : ";";
+
     this.defaultOutputFilePrefix = 'output' ;
+    /**
+     * Mode d'execution (console|batch)
+     */
     this.modeExecution = modeExecution
   }
   
@@ -35,7 +39,7 @@ class JsonToCsv {
     this.validateArguments(this.sourceFile , this.outputDirectory) ; 
     
     /**
-     * en mode batch veriier que le fichier source à été modifié
+     * en mode batch verifier que le fichier source à été modifié
      * avent de l'exporter en CSV
      */
     if (this.modeExecution !== JsonToCsv.MODE_EXECUTION_CONSOLE) {
@@ -44,7 +48,7 @@ class JsonToCsv {
       }
     }
     /**
-     * Le fichier est volumineux utiliser le traiter par morceau en 
+     * Le fichier est source est volumineux,  le traiter par morceau en 
      * utilisant createReadStream , createWriteStream definis nativement dans le module fs de  Node.js 
      */
     const readStream = fs.createReadStream(this.sourceFile);
@@ -102,7 +106,7 @@ class JsonToCsv {
 
 
   /**
-   * Renvoi le chemmin complet avec le nom final du fichier de sortie   
+   * Renvoie le chemmin complet avec le nom final du fichier de sortie   
    * @returns 
    */
   getOutputFilePath(destination) {
@@ -141,7 +145,7 @@ class JsonToCsv {
       throw new Error('Le fichier source doit avoir une extension .json '); 
     }
     
-    //verifier l'éxistance du rép^értoire de destination  
+    //verifier l'éxistance du réprtoire de destination  
     if (!fs.existsSync(outputDirectory)) {
       throw new Error('Le répétroire de destination n\'existe pas '); 
     }
